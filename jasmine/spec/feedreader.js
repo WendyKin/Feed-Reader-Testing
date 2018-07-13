@@ -28,7 +28,7 @@ $(function() {
         it('url in allFeeds are defined and not be null', function() {
             allFeeds.forEach(function(i) {
                 expect(i.url).toBeDefined();
-                expect(i.url).not.toBeNull();
+                expect(i.url.length).not.toBe(0);
             });
         });
 
@@ -38,7 +38,7 @@ $(function() {
         it('name in allFeeds are defined and not be null', function() {
             allFeeds.forEach(function(i) {
                 expect(i.name).toBeDefined();
-                expect(i.name).not.toBeNull();
+                expect(i.name.length).not.toBe(0);
             });
         });
     });
@@ -92,9 +92,7 @@ $(function() {
     */  
         //在异步完成后再进行it测试；
         beforeEach(function (done) {
-            loadFeed(1,function () {
-                done();
-            });
+            loadFeed(0,done);
         }, 30000);
 
         it('loadFeed works normally', function() {
@@ -125,10 +123,8 @@ $(function() {
             feedNew = null;
         });
 
-          it('can be loaded correctly', function (done) {
-
+          it('can be loaded correctly', function () {
             expect(feedNew).not.toEqual(feedOld);
-            done();
           });
     });
 }());
